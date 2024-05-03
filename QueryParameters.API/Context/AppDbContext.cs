@@ -4,9 +4,11 @@ using QueryParameters.Entities;
 
 namespace QueryParameters.Context;
 
-public class AppDbContext(DbContextOptions options) : DbContext(options)
+public class AppDbContext : DbContext
 {
     public DbSet<Category> Categories { get; set; }
+
+    public AppDbContext(DbContextOptions options) : base(options) => Database.EnsureCreated();
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
